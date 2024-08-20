@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Promise Tasks</title>
+</head>
+<body>
+    <h1>Задания по работе с Promise</h1>
+    
+    <h2>Задание 1: Promise с resolve или reject</h2>
+    <p>Этот код создает Promise, который в зависимости от переменной делает resolve или reject:</p>
+    <pre><code>
+const condition = true; // измените на false, чтобы увидеть reject
+
+const myPromise = new Promise((resolve, reject) => {
+    if (condition) {
+        resolve('Promise resolved successfully!');
+    } else {
+        reject('Promise was rejected.');
+    });
+</code></pre>
+    
+    <h2>Задание 2: Promise с отловом rejected и выводом ошибки</h2>
+    <p>Этот код демонстрирует обработку ошибки с помощью catch:</p>
+    <pre><code>
+myPromise
+    .then(result => {
+        console.log(result);
+    })
+    .catch(error => {
+        console.error('Caught error:', error);
+    });
+</code></pre>
+
+    <h2>Задание 3: Цепочечное выполнение .then и обработка ошибок</h2>
+    <pre><code>
+const chainPromise = new Promise((resolve, reject) => {
+    resolve('First step success');
+});
+
+chainPromise
+    .then(result => {
+        console.log(result);
+        return 'Second step success';
+    })
+    .then(result => {
+        console.log(result);
+        throw new Error('An error occurred in the chain');
+    })
+    .catch(error => {
+        console.error('Caught error in chain:', error);
+    });
+</code></pre>
+
+    <h2>Задание 4: Цепочечное выполнение с двумя catch и finally</h2>
+    <pre><code>
+const complexPromise = new Promise((resolve, reject) => {
+    reject('Initial rejection');
+});
+
+complexPromise
+    .then(result => {
+        console.log(result);
+    })
+    .catch(error => {
+        console.error('First catch:', error);
+        throw new Error('Error after first catch');
+    })
+    .catch(error => {
+        console.error('Second catch:', error);
+    })
+    .finally(() => {
+        console.log('Finally block executed');
+    });
+</code></pre>
+
+    <h2>Задание 5: Два catch для одного Promise</h2>
+    <p>Да, как показано в предыдущем примере, можно вызвать два catch блока.</p>
+
+    <h2>Запуск кода</h2>
+    <p>Чтобы увидеть работу этих примеров, откройте консоль разработчика в браузере.</p>
+
+    <script>
+        // Ваш код также можно разместить внутри этого тега script для демонстрации работы
+    </script>
+</body>
+</html>
